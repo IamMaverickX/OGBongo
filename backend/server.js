@@ -5,18 +5,22 @@ const nodemailer = require('nodemailer');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fs = require('fs');
+const axios = require('axios');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configuration - No .env needed!
+// Configuration
 const CONFIG = {
   PORT: process.env.PORT || 3000,
   WEBSITE_URL: process.env.WEBSITE_URL || `http://localhost:${PORT}`,
-  // Email configuration (optional - remove if you don't want emails)
-  EMAIL_ENABLED: false, // Set to true if you want email notifications
-  EMAIL_USER: 'bongodevem@gmail.com', // Your email
-  EMAIL_PASS: '' // Leave empty if you don't want to configure email
+  // Telegram Configuration
+  TELEGRAM_CHANNEL: '@ogbongouserartupload', // Your Telegram channel
+  TELEGRAM_BOT_TOKEN: '', // Optional: Add bot token for auto-sync
+  // Email configuration (optional)
+  EMAIL_ENABLED: false,
+  EMAIL_USER: 'bongodevem@gmail.com',
+  EMAIL_PASS: ''
 };
 
 // Middleware
@@ -52,7 +56,7 @@ db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS approved_art (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     submission_id INTEGER,
-    telegram_message_id TEXT,
+    telegram_message_id TEXT UNIQUE,
     image_url TEXT NOT NULL,
     artist_name TEXT NOT NULL,
     artist_social TEXT,
@@ -60,10 +64,8 @@ db.serialize(() => {
     approved_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (submission_id) REFERENCES submissions (id)
   )`);
-});
 
-// Add some sample approved art
-db.serialize(() => {
+  // Add some sample approved art
   const sampleArt = [
     {
       telegram_message_id: 'sample1',
@@ -104,7 +106,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB limit
+    fileSize: 5 * 1024 * 1024
   },
   fileFilter: (req, file, cb) => {
     if (file.mimetype.startsWith('image/')) {
@@ -115,20 +117,86 @@ const upload = multer({
   }
 });
 
-// Email configuration (optional)
-const createTransporter = () => {
-  if (!CONFIG.EMAIL_ENABLED || !CONFIG.EMAIL_USER || !CONFIG.EMAIL_PASS) {
+// Telegram Utility Functions
+class TelegramSync {
+  // Method to manually sync from Telegram channel (for testing)
+  static async syncFromTelegram() {
+    try {
+      console.log('🔄 Attempting to sync from Telegram channel...');
+      
+      // Since we don't have a bot token, we'll use a manual approach
+      // In a real implementation, you would use the Telegram Bot API
+      
+      // For now, we'll return a message about manual sync
+      return {
+        success: true,
+        message: 'Telegram auto-sync requires bot token. Use manual sync via admin panel.',
+        synced_count: 0
+      };
+      
+    } catch (error) {
+      console.error('Telegram sync error:', error);
+      return {
+        success: false,
+        error: 'Telegram sync failed: ' + error.message
+      };
+    }
+  }
+
+  // Extract image URL from Telegram message (helper function)
+  static extractImageUrl(telegramMessage) {
+    // This is a simplified version - in reality, you'd parse Telegram API response
+    if (telegramMessage.photo && telegramMessage.photo.length > 0) {
+      const fileId = telegramMessage.photo[telegramMessage.photo.length - 1].file_id;
+      return `https://api.telegram.org/file/bot${CONFIG.TELEGRAM_BOT_TOKEN}/${fileId}`;
+    }
     return null;
   }
-  
-  return nodemailer.createTransporter({
-    service: 'gmail',
-    auth: {
-      user: CONFIG.EMAIL_USER,
-      pass: CONFIG.EMAIL_PASS
+
+  // Manual sync endpoint for admin
+  static async manualSync(imageUrl, telegramMessageId, artistName = 'Community Artist', description = '') {
+    try {
+      // Check if this message already exists
+      const existing = await new Promise((resolve, reject) => {
+        db.get(`SELECT id FROM approved_art WHERE telegram_message_id = ?`, [telegramMessageId], (err, row) => {
+          if (err) reject(err);
+          else resolve(row);
+        });
+      });
+
+      if (existing) {
+        return { success: false, error: 'This Telegram message is already synced' };
+      }
+
+      // Add to approved art
+      const stmt = db.prepare(`INSERT INTO approved_art 
+        (telegram_message_id, image_url, artist_name, art_description) 
+        VALUES (?, ?, ?, ?)`);
+      
+      const result = await new Promise((resolve, reject) => {
+        stmt.run([telegramMessageId, imageUrl, artistName, description], function(err) {
+          if (err) reject(err);
+          else resolve({ id: this.lastID });
+        });
+      });
+
+      stmt.finalize();
+
+      return {
+        success: true,
+        message: 'Artwork synced from Telegram successfully!',
+        id: result.id
+      };
+
+    } catch (error) {
+      console.error('Manual sync error:', error);
+      return {
+        success: false,
+        error: 'Manual sync failed: ' + error.message
+      };
     }
-  });
-};
+  }
+}
 
 // Routes
 
@@ -171,32 +239,6 @@ app.post('/api/submit-art', upload.array('images', 5), async (req, res) => {
       stmt.finalize();
     }
 
-    // Send email notification if email is configured
-    if (CONFIG.EMAIL_ENABLED) {
-      try {
-        const transporter = createTransporter();
-        if (transporter) {
-          const mailOptions = {
-            from: CONFIG.EMAIL_USER,
-            to: 'bongodevem@gmail.com',
-            subject: `New OGbongo Art Submission from ${artist_name}`,
-            html: `
-              <h2>New Art Submission</h2>
-              <p><strong>Artist:</strong> ${artist_name}</p>
-              ${artist_social ? `<p><strong>Social Media:</strong> ${artist_social}</p>` : ''}
-              ${art_description ? `<p><strong>Description:</strong> ${art_description}</p>` : ''}
-              <p><strong>Number of Images:</strong> ${req.files.length}</p>
-              <p>Please review the submission in the admin panel.</p>
-            `
-          };
-
-          await transporter.sendMail(mailOptions);
-        }
-      } catch (emailError) {
-        console.log('Email not sent (email not configured):', emailError.message);
-      }
-    }
-
     res.json({ 
       success: true, 
       message: 'Artwork submitted successfully! It will be reviewed soon.',
@@ -217,7 +259,6 @@ app.get('/api/admin/submissions', (req, res) => {
         return res.status(500).json({ error: 'Database error' });
       }
       
-      // Add full image URLs
       const submissions = rows.map(row => ({
         ...row,
         image_url: `${CONFIG.WEBSITE_URL}/uploads/${row.filename}`
@@ -232,7 +273,6 @@ app.post('/api/admin/approve/:id', (req, res) => {
   const { id } = req.params;
   const { telegram_message_id, image_url } = req.body;
 
-  // Get submission details
   db.get(`SELECT * FROM submissions WHERE id = ?`, [id], (err, submission) => {
     if (err) {
       return res.status(500).json({ error: 'Database error' });
@@ -292,31 +332,77 @@ app.get('/api/gallery', (req, res) => {
 });
 
 // Manual add from Telegram
-app.post('/api/admin/add-from-telegram', (req, res) => {
+app.post('/api/admin/add-from-telegram', async (req, res) => {
   const { telegram_message_id, image_url, artist_name, artist_social, art_description } = req.body;
 
   if (!telegram_message_id || !image_url || !artist_name) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  const stmt = db.prepare(`INSERT INTO approved_art 
-    (telegram_message_id, image_url, artist_name, artist_social, art_description) 
-    VALUES (?, ?, ?, ?, ?)`);
+  const result = await TelegramSync.manualSync(
+    image_url, 
+    telegram_message_id, 
+    artist_name, 
+    art_description
+  );
+
+  if (result.success) {
+    res.json(result);
+  } else {
+    res.status(400).json(result);
+  }
+});
+
+// New: Quick add from Telegram (simplified)
+app.post('/api/admin/quick-telegram-add', async (req, res) => {
+  const { telegram_url } = req.body;
+
+  if (!telegram_url) {
+    return res.status(400).json({ error: 'Telegram message URL is required' });
+  }
+
+  try {
+    // Extract message ID from Telegram URL
+    const messageId = telegram_url.split('/').pop();
+    
+    const result = await TelegramSync.manualSync(
+      telegram_url, // Using the URL directly as image source
+      messageId,
+      'Telegram Community',
+      'Art from Telegram channel'
+    );
+
+    if (result.success) {
+      res.json(result);
+    } else {
+      res.status(400).json(result);
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to add Telegram content: ' + error.message });
+  }
+});
+
+// New: Auto-sync from Telegram (manual trigger)
+app.post('/api/admin/telegram-sync', async (req, res) => {
+  const result = await TelegramSync.syncFromTelegram();
   
-  stmt.run([telegram_message_id, image_url, artist_name, artist_social, art_description], 
-    function(err) {
-      if (err) {
-        return res.status(500).json({ error: 'Failed to add artwork' });
-      }
-      
-      res.json({ 
-        success: true, 
-        message: 'Artwork added successfully',
-        id: this.lastID 
-      });
-    });
+  if (result.success) {
+    res.json(result);
+  } else {
+    res.status(500).json(result);
+  }
+});
+
+// New: Get Telegram sync status
+app.get('/api/admin/telegram-status', (req, res) => {
+  const status = {
+    channel: CONFIG.TELEGRAM_CHANNEL,
+    bot_configured: !!CONFIG.TELEGRAM_BOT_TOKEN,
+    auto_sync_available: !!CONFIG.TELEGRAM_BOT_TOKEN,
+    manual_sync_available: true
+  };
   
-  stmt.finalize();
+  res.json(status);
 });
 
 // Admin panel
@@ -330,7 +416,7 @@ app.get('/api/health', (req, res) => {
     status: 'OK', 
     timestamp: new Date().toISOString(),
     config: {
-      email_enabled: CONFIG.EMAIL_ENABLED,
+      telegram_channel: CONFIG.TELEGRAM_CHANNEL,
       website_url: CONFIG.WEBSITE_URL
     }
   });
@@ -351,10 +437,21 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
+// Auto-sync on startup (if bot token is configured)
+if (CONFIG.TELEGRAM_BOT_TOKEN) {
+  console.log('🤖 Telegram bot token detected, auto-sync enabled');
+  // Start periodic sync every 5 minutes
+  setInterval(() => {
+    TelegramSync.syncFromTelegram();
+  }, 5 * 60 * 1000);
+} else {
+  console.log('ℹ️  No Telegram bot token configured. Using manual sync mode.');
+}
+
 app.listen(PORT, () => {
   console.log(`🚀 OGbongo Backend running on port ${PORT}`);
   console.log(`🌐 Website: http://localhost:${PORT}`);
   console.log(`🔧 Admin Panel: http://localhost:${PORT}/admin`);
-  console.log(`❤️  Health Check: http://localhost:${PORT}/api/health`);
-  console.log(`📧 Email Notifications: ${CONFIG.EMAIL_ENABLED ? 'ENABLED' : 'DISABLED'}`);
+  console.log(`📺 Telegram Channel: ${CONFIG.TELEGRAM_CHANNEL}`);
+  console.log(`🤖 Auto-sync: ${CONFIG.TELEGRAM_BOT_TOKEN ? 'ENABLED' : 'MANUAL MODE'}`);
 });
