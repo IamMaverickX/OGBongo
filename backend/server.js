@@ -5,10 +5,19 @@ const nodemailer = require('nodemailer');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fs = require('fs');
-require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Configuration - No .env needed!
+const CONFIG = {
+  PORT: process.env.PORT || 3000,
+  WEBSITE_URL: process.env.WEBSITE_URL || `http://localhost:${PORT}`,
+  // Email configuration (optional - remove if you don't want emails)
+  EMAIL_ENABLED: false, // Set to true if you want email notifications
+  EMAIL_USER: 'bongodevem@gmail.com', // Your email
+  EMAIL_PASS: '' // Leave empty if you don't want to configure email
+};
 
 // Middleware
 app.use(cors());
@@ -106,13 +115,17 @@ const upload = multer({
   }
 });
 
-// Email configuration
+// Email configuration (optional)
 const createTransporter = () => {
+  if (!CONFIG.EMAIL_ENABLED || !CONFIG.EMAIL_USER || !CONFIG.EMAIL_PASS) {
+    return null;
+  }
+  
   return nodemailer.createTransporter({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      user: CONFIG.EMAIL_USER,
+      pass: CONFIG.EMAIL_PASS
     }
   });
 };
@@ -159,26 +172,28 @@ app.post('/api/submit-art', upload.array('images', 5), async (req, res) => {
     }
 
     // Send email notification if email is configured
-    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    if (CONFIG.EMAIL_ENABLED) {
       try {
         const transporter = createTransporter();
-        const mailOptions = {
-          from: process.env.EMAIL_USER,
-          to: 'bongodevem@gmail.com',
-          subject: `New OGbongo Art Submission from ${artist_name}`,
-          html: `
-            <h2>New Art Submission</h2>
-            <p><strong>Artist:</strong> ${artist_name}</p>
-            ${artist_social ? `<p><strong>Social Media:</strong> ${artist_social}</p>` : ''}
-            ${art_description ? `<p><strong>Description:</strong> ${art_description}</p>` : ''}
-            <p><strong>Number of Images:</strong> ${req.files.length}</p>
-            <p>Please review the submission in the admin panel.</p>
-          `
-        };
+        if (transporter) {
+          const mailOptions = {
+            from: CONFIG.EMAIL_USER,
+            to: 'bongodevem@gmail.com',
+            subject: `New OGbongo Art Submission from ${artist_name}`,
+            html: `
+              <h2>New Art Submission</h2>
+              <p><strong>Artist:</strong> ${artist_name}</p>
+              ${artist_social ? `<p><strong>Social Media:</strong> ${artist_social}</p>` : ''}
+              ${art_description ? `<p><strong>Description:</strong> ${art_description}</p>` : ''}
+              <p><strong>Number of Images:</strong> ${req.files.length}</p>
+              <p>Please review the submission in the admin panel.</p>
+            `
+          };
 
-        await transporter.sendMail(mailOptions);
+          await transporter.sendMail(mailOptions);
+        }
       } catch (emailError) {
-        console.log('Email not sent (configuration may be missing):', emailError.message);
+        console.log('Email not sent (email not configured):', emailError.message);
       }
     }
 
@@ -205,7 +220,7 @@ app.get('/api/admin/submissions', (req, res) => {
       // Add full image URLs
       const submissions = rows.map(row => ({
         ...row,
-        image_url: `${process.env.WEBSITE_URL || 'http://localhost:' + PORT}/uploads/${row.filename}`
+        image_url: `${CONFIG.WEBSITE_URL}/uploads/${row.filename}`
       }));
       
       res.json(submissions);
@@ -311,7 +326,14 @@ app.get('/admin', (req, res) => {
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+  res.json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    config: {
+      email_enabled: CONFIG.EMAIL_ENABLED,
+      website_url: CONFIG.WEBSITE_URL
+    }
+  });
 });
 
 // Error handling middleware
@@ -334,4 +356,5 @@ app.listen(PORT, () => {
   console.log(`🌐 Website: http://localhost:${PORT}`);
   console.log(`🔧 Admin Panel: http://localhost:${PORT}/admin`);
   console.log(`❤️  Health Check: http://localhost:${PORT}/api/health`);
+  console.log(`📧 Email Notifications: ${CONFIG.EMAIL_ENABLED ? 'ENABLED' : 'DISABLED'}`);
 });
