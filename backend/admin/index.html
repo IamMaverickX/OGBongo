@@ -39,6 +39,7 @@
             display: flex;
             border-bottom: 2px solid #e0e0e0;
             margin-bottom: 30px;
+            flex-wrap: wrap;
         }
         
         .tab {
@@ -116,6 +117,16 @@
         
         .reject-btn:hover {
             background: #c82333;
+            transform: translateY(-2px);
+        }
+        
+        .telegram-btn {
+            background: #0088cc;
+            color: white;
+        }
+        
+        .telegram-btn:hover {
+            background: #0077b5;
             transform: translateY(-2px);
         }
         
@@ -221,6 +232,50 @@
             margin: 10px 0;
             border: 1px solid #f5c6cb;
         }
+        
+        .info-message {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border: 1px solid #bee5eb;
+        }
+        
+        .telegram-sync-section {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .sync-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .status-active {
+            background: #28a745;
+        }
+        
+        .status-inactive {
+            background: #dc3545;
+        }
+        
+        .quick-add-form {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -234,6 +289,9 @@
             </div>
             <div class="tab" onclick="showTab('approved')">
                 <i class="fas fa-check-circle"></i> Approved Art
+            </div>
+            <div class="tab" onclick="showTab('telegram')">
+                <i class="fab fa-telegram"></i> Telegram Sync
             </div>
             <div class="tab" onclick="showTab('manual')">
                 <i class="fas fa-plus-circle"></i> Manual Add
@@ -251,6 +309,60 @@
             <h2>Approved Artwork</h2>
             <div id="approved-list" class="loading">
                 <i class="fas fa-spinner fa-spin"></i> Loading approved art...
+            </div>
+        </div>
+
+        <div id="telegram-tab" class="tab-content">
+            <h2><i class="fab fa-telegram"></i> Telegram Sync</h2>
+            
+            <div class="telegram-sync-section">
+                <div class="sync-status">
+                    <div class="status-indicator" id="sync-status-indicator"></div>
+                    <span id="sync-status-text">Checking sync status...</span>
+                </div>
+                
+                <div class="info-message">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Telegram Channel:</strong> @ogbongouserartupload
+                </div>
+                
+                <div class="actions">
+                    <button class="telegram-btn" onclick="syncTelegram()">
+                        <i class="fas fa-sync"></i> Sync Now
+                    </button>
+                    <button class="approve-btn" onclick="showTab('quick-add')">
+                        <i class="fas fa-bolt"></i> Quick Add
+                    </button>
+                </div>
+            </div>
+
+            <div id="telegram-sync-result"></div>
+        </div>
+
+        <div id="quick-add-tab" class="tab-content">
+            <h2><i class="fas fa-bolt"></i> Quick Add from Telegram</h2>
+            
+            <div class="quick-add-form">
+                <div class="form-group">
+                    <label><i class="fab fa-telegram"></i> Telegram Message URL *</label>
+                    <input type="text" id="telegram-url" placeholder="https://t.me/ogbongouserartupload/123" required>
+                    <small style="color: #666;">Paste the full URL of the Telegram message containing the image</small>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Artist Name (Optional)</label>
+                    <input type="text" id="quick-artist-name" placeholder="Leave empty for 'Community Artist'">
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-comment"></i> Description (Optional)</label>
+                    <textarea id="quick-art-description" placeholder="Art description" rows="3"></textarea>
+                </div>
+                
+                <button class="telegram-btn" onclick="quickAddFromTelegram()">
+                    <i class="fas fa-plus"></i> Add to Gallery
+                </button>
+                <div id="quick-add-result"></div>
             </div>
         </div>
 
@@ -299,7 +411,112 @@
             
             if (tabName === 'pending') loadSubmissions();
             if (tabName === 'approved') loadApproved();
+            if (tabName === 'telegram') loadTelegramStatus();
         }
+
+        async function loadTelegramStatus() {
+            try {
+                const response = await fetch(API_BASE + '/admin/telegram-status');
+                const status = await response.json();
+                
+                const indicator = document.getElementById('sync-status-indicator');
+                const statusText = document.getElementById('sync-status-text');
+                
+                if (status.auto_sync_available) {
+                    indicator.className = 'status-indicator status-active';
+                    statusText.textContent = 'Auto-sync: ACTIVE - Bot connected to Telegram';
+                } else {
+                    indicator.className = 'status-indicator status-inactive';
+                    statusText.textContent = 'Auto-sync: MANUAL MODE - Use Quick Add or Manual Add';
+                }
+            } catch (error) {
+                console.error('Error loading Telegram status:', error);
+            }
+        }
+
+        async function syncTelegram() {
+            try {
+                const resultDiv = document.getElementById('telegram-sync-result');
+                resultDiv.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Syncing with Telegram...</div>';
+                
+                const response = await fetch(API_BASE + '/admin/telegram-sync', {
+                    method: 'POST'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    resultDiv.innerHTML = `
+                        <div class="success-message">
+                            <i class="fas fa-check"></i> ${result.message}
+                            ${result.synced_count > 0 ? `<br>Synced ${result.synced_count} new artworks` : ''}
+                        </div>
+                    `;
+                    
+                    // Reload approved art if we're on that tab
+                    if (currentTab === 'approved') {
+                        loadApproved();
+                    }
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-triangle"></i> ${result.error}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error syncing Telegram:', error);
+                document.getElementById('telegram-sync-result').innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i> Sync failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function quickAddFromTelegram() {
+            const telegramUrl = document.getElementById('telegram-url').value;
+            const artistName = document.getElementById('quick-artist-name').value || 'Community Artist';
+            const artDescription = document.getElementById('quick-art-description').value;
+            
+            if (!telegramUrl) {
+                showMessage('quick-add-result', 'Please enter a Telegram message URL', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch(API_BASE + '/admin/quick-telegram-add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        telegram_url: telegramUrl,
+                        artist_name: artistName,
+                        art_description: artDescription
+                    })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    showMessage('quick-add-result', 'Artwork added successfully from Telegram!', 'success');
+                    // Clear form
+                    document.getElementById('telegram-url').value = '';
+                    document.getElementById('quick-artist-name').value = '';
+                    document.getElementById('quick-art-description').value = '';
+                    
+                    // Reload approved list
+                    loadApproved();
+                } else {
+                    showMessage('quick-add-result', 'Error: ' + result.error, 'error');
+                }
+            } catch (error) {
+                console.error('Error quick adding from Telegram:', error);
+                showMessage('quick-add-result', 'Error adding artwork: ' + error.message, 'error');
+            }
+        }
+
+        // ... (rest of the existing functions remain the same - loadSubmissions, approveSubmission, rejectSubmission, loadApproved, addManualArt, showMessage)
 
         async function loadSubmissions() {
             try {
@@ -520,8 +737,9 @@
             }, 5000);
         }
 
-        // Load submissions on page load
+        // Load submissions and Telegram status on page load
         loadSubmissions();
+        loadTelegramStatus();
     </script>
 </body>
 </html>
