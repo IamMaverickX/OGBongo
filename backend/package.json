@@ -1,7 +1,7 @@
 {
-  "name": "ogbongo-backend",
+  "name": "ogbongo-website",
   "version": "1.0.0",
-  "description": "Backend for OGbongo website with gallery system",
+  "description": "OGbongo website with Telegram auto-sync",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -10,10 +10,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
-    "multer": "^1.4.5",
-    "nodemailer": "^6.9.7",
     "sqlite3": "^5.1.6",
-    "dotenv": "^16.3.1"
+    "axios": "^1.6.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
