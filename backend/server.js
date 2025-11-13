@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 const TELEGRAM_CONFIG = {
   CHANNEL: '@ogbongouserartupload',
   // You'll need to create a Telegram bot and get these credentials
-  BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN || '', // Add your bot token here
+  BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN || '', 8476389795:AAH8CER-SVyB8iJCK0BDP51pOEJCRE4wzks
   CHANNEL_ID: process.env.TELEGRAM_CHANNEL_ID || '', // Your channel ID
   SYNC_INTERVAL: 2 * 60 * 1000 // Check every 2 minutes
 };
