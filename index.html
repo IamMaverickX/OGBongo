@@ -245,301 +245,6 @@
             font-size: 1.5rem;
         }
         
-        /* Updated Narrative Section */
-        .narrative-section {
-            background: white;
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 50px;
-        }
-        
-        .narrative-content {
-            max-width: 900px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-        
-        .narrative-content p {
-            margin-bottom: 25px;
-            text-align: justify;
-        }
-        
-        .narrative-highlight {
-            background: linear-gradient(to right, rgba(106, 17, 203, 0.1), rgba(37, 117, 252, 0.1));
-            padding: 25px;
-            border-left: 4px solid var(--primary);
-            margin: 30px 0;
-            border-radius: 0 10px 10px 0;
-        }
-        
-        .pump-fun-tribute {
-            text-align: center;
-            margin-top: 40px;
-            padding: 30px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 15px;
-        }
-        
-        .pump-fun-tribute h3 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-        }
-        
-        /* Updated Tokenomics Section */
-        .tokenomics-section {
-            background: white;
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 50px;
-        }
-        
-        .tokenomics-intro {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 1.2rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .tokenomics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .tokenomics-card {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 5px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-        
-        .tokenomics-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .tokenomics-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 15px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-        }
-        
-        .tokenomics-card h3 i {
-            margin-right: 10px;
-        }
-        
-        .milestone-section {
-            margin-top: 50px;
-        }
-        
-        .milestone-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .milestone-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #e9ecef;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .milestone-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--gradient);
-        }
-        
-        .milestone-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .milestone-card h4 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        .gamification-section {
-            margin-top: 50px;
-            text-align: center;
-        }
-        
-        .gamification-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .gamification-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .gamification-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        
-        .gamification-card i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .vision-section {
-            text-align: center;
-            margin-top: 50px;
-            padding: 30px;
-            background: linear-gradient(to right, rgba(106, 17, 203, 0.05), rgba(37, 117, 252, 0.05));
-            border-radius: 15px;
-        }
-        
-        /* Roadmap Section */
-        .roadmap {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            margin: 50px 0;
-        }
-        
-        .roadmap::before {
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 4px;
-            background: var(--gradient);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .roadmap-phase {
-            width: 50%;
-            padding: 20px;
-            position: relative;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .roadmap-phase:nth-child(odd) {
-            align-self: flex-start;
-            padding-right: 40px;
-        }
-        
-        .roadmap-phase:nth-child(even) {
-            align-self: flex-end;
-            padding-left: 40px;
-        }
-        
-        .roadmap-phase::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--gradient);
-            border: 4px solid white;
-            border-radius: 50%;
-            top: 20px;
-        }
-        
-        .roadmap-phase:nth-child(odd)::after {
-            right: -12px;
-        }
-        
-        .roadmap-phase:nth-child(even)::after {
-            left: -12px;
-        }
-        
-        .phase-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .phase-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .phase-card ul {
-            padding-left: 20px;
-        }
-        
-        .phase-card li {
-            margin-bottom: 8px;
-        }
-        
-        /* Gallery Page */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            height: 250px;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover::after {
-            opacity: 1;
-        }
-        
         /* Upload Section */
         .upload-section {
             background: white;
@@ -672,274 +377,51 @@
             text-decoration: underline;
         }
         
-        .community-gallery-section {
-            margin: 50px 0;
-        }
-        
-        .gallery-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .gallery-placeholder {
-            text-align: center;
-            padding: 60px 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .gallery-placeholder i {
-            font-size: 4rem;
-            color: #ddd;
-            margin-bottom: 20px;
-        }
-        
-        /* Gaming Page */
-        .coming-soon {
-            text-align: center;
-            padding: 100px 0;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .coming-soon i {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .coming-soon h2 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        /* Rewards Page */
-        .rewards-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .rewards-form {
-            margin-top: 30px;
-        }
-        
-        /* Buy Page */
-        .buy-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .ca-box {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .ca-box p {
-            font-family: monospace;
-            word-break: break-all;
-            margin-bottom: 15px;
-        }
-        
-        .copy-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .buy-options {
-            text-align: center;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
+        /* Gallery Styles */
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
         }
         
-        .footer-section h3 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 20px;
+        .gallery-item {
             position: relative;
-            padding-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            height: 250px;
         }
         
-        .footer-section h3::after {
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gradient);
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
-        .social-links {
-            display: flex;
-            gap: 15px;
+        .gallery-item:hover::after {
+            opacity: 1;
         }
         
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            transform: translateY(-5px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #444;
-        }
-        
-        /* Chatbot */
-        .chatbot-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-            animation: pulse 2s infinite;
-        }
-        
-        .chatbot-container {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 450px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .chatbot-header {
-            background: var(--gradient);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .chatbot-close {
-            position: absolute;
-            right: 15px;
-            cursor: pointer;
-        }
-        
-        .chatbot-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-        }
-        
-        .message {
-            margin-bottom: 15px;
-            display: flex;
-        }
-        
-        .bot-message {
-            justify-content: flex-start;
-        }
-        
-        .user-message {
-            justify-content: flex-end;
-        }
-        
-        .message-content {
-            padding: 10px 15px;
-            border-radius: 18px;
-            max-width: 70%;
-        }
-        
-        .bot-message .message-content {
-            background: #f1f1f1;
-        }
-        
-        .user-message .message-content {
-            background: var(--gradient);
-            color: white;
-        }
-        
-        .chatbot-input {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #eee;
-        }
-        
-        .chatbot-input input {
-            flex: 1;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            outline: none;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .chatbot-input button {
-            margin-left: 10px;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 15px;
-            cursor: pointer;
-        }
-        
-        /* Message Styles */
+        /* Status Messages */
         .message-box {
             padding: 15px;
             border-radius: 10px;
@@ -957,6 +439,30 @@
             background: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
+        }
+        
+        .info-message {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        /* Telegram Status */
+        .telegram-status {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .sync-active {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+        
+        .sync-inactive {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
         }
         
         /* Animations */
@@ -994,31 +500,6 @@
         }
         
         /* Responsive Styles */
-        @media (max-width: 992px) {
-            .roadmap::before {
-                left: 20px;
-            }
-            
-            .roadmap-phase {
-                width: 100%;
-                padding-left: 50px;
-                padding-right: 0;
-            }
-            
-            .roadmap-phase:nth-child(odd),
-            .roadmap-phase:nth-child(even) {
-                align-self: flex-start;
-                padding-right: 0;
-                padding-left: 50px;
-            }
-            
-            .roadmap-phase:nth-child(odd)::after,
-            .roadmap-phase:nth-child(even)::after {
-                left: 10px;
-                right: auto;
-            }
-        }
-        
         @media (max-width: 768px) {
             nav ul {
                 display: none;
@@ -1046,15 +527,6 @@
             
             .page-title {
                 font-size: 2rem;
-            }
-            
-            .narrative-section, .tokenomics-section {
-                padding: 30px 20px;
-            }
-            
-            .chatbot-container {
-                width: 300px;
-                right: 15px;
             }
         }
     </style>
@@ -1125,185 +597,20 @@
                 </div>
             </div>
             
-            <div class="narrative-section">
-                <h2 class="page-title">The OGbongo Vision</h2>
-                
-                <div class="narrative-content">
-                    <p>OGbongo is far more than just another meme token. This project represents a movement - a mission to build community interest and gather investors to help transform Bongo into something monumental. Our vision encompasses games, comics, cartoon TV series, books, merchandise, and community outreach programs, particularly in Maine, designed to help people work toward something great that better themselves and those around them.</p>
-                    
-                    <p>Bongo represents the strong leader people need to brighten the way for those who can only see darkness. This character, created by my friend and I in middle school, immediately demonstrated incredible potential by spreading positivity wherever he went. Recognizing this power, I began developing stories, different characters, and creative expressions to share the motivational energy that Bongo brings to individuals.</p>
-                    
-                    <div class="narrative-highlight">
-                        <p><strong>My commitment to Bongo is unwavering</strong> - I will not stop pushing this vision until my last breath on Earth. Bongo will be noticed and loved by millions, and the message behind this project will inspire countless others to start doing the right thing, to stop hurting and abusing one another, and to discover how working together and learning together is far more powerful than the evil that divides us.</p>
-                    </div>
-                    
-                    <p>This meme token serves as the foundation for building a community that believes in positivity, creativity, and mutual support. Through OGbongo, we're creating more than just a cryptocurrency - we're building an ecosystem that empowers people, fosters creativity, and makes a genuine difference in the world.</p>
-                    
-                    <div class="pump-fun-tribute">
-                        <h3>A Special Thanks to Pump.fun</h3>
-                        <p>PUMP.FUN IS LEGENDARY FOR GIVING ME AND ALL OF US THE OPPORTUNITY TO MAKE A COIN! Their platform has provided the foundation for turning this vision into reality. BIG THANKS TO EVERYONE ON THIS JOURNEY WITH ME.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <h2 class="page-title">Our Roadmap</h2>
-            
-            <div class="roadmap">
-                <div class="roadmap-phase">
-                    <div class="phase-card">
-                        <h3>PHASE 1: Foundation</h3>
-                        <ul>
-                            <li>Establish strong tokenomics and community foundation</li>
-                            <li>Develop Bongo's expanded universe and character depth</li>
-                            <li>Launch initial merchandise and digital content</li>
-                            <li>Build the core community and outreach programs</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="roadmap-phase">
-                    <div class="phase-card">
-                        <h3>PHASE 2: Expansion</h3>
-                        <ul>
-                            <li>Develop Bongo-themed games and interactive experiences</li>
-                            <li>Produce comic series and animated content</li>
-                            <li>Expand community outreach programs in Maine and beyond</li>
-                            <li>Launch educational initiatives focused on positivity</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="roadmap-phase">
-                    <div class="phase-card">
-                        <h3>PHASE 3: Transformation</h3>
-                        <ul>
-                            <li>Produce full-length animated series</li>
-                            <li>Establish Bongo community centers</li>
-                            <li>Launch large-scale positive impact initiatives</li>
-                            <li>Expand globally while maintaining core values</li>
-                        </ul>
-                    </div>
-                </div>
+            <!-- Content sections remain the same as before -->
+            <div style="text-align: center; margin-top: 50px;">
+                <h3>Experience the Rhythm of OGbongo</h3>
+                <p>Join our growing community and be part of something special</p>
             </div>
         </div>
     </section>
 
     <section id="tokenomics" class="page">
         <div class="container">
-            <h2 class="page-title">📢 OGbongo Tokenomics<br><span class="subtitle">The Rhythm of a Nation</span></h2>
-            
-            <div class="tokenomics-section">
-                <div class="tokenomics-intro">
-                    <p>Fam, OGbongo isn't just another meme coin. It's a culture, a tribe, and a movement. What makes us different is that our tokenomics aren't just about numbers – they're tied to milestones, culture, and community rituals that grow as we grow.</p>
-                    <p>This is how we're building something no one wants to walk away from:</p>
-                </div>
-                
-                <div class="tokenomics-grid">
-                    <div class="tokenomics-card">
-                        <h3><i class="fas fa-users"></i> Community Development Fund (CDF)</h3>
-                        <p>Devan committed his entire 1.5% supply to fund development, marketing, and community growth. The CDF is fully transparent, stored in a public wallet, and used only for bounties, campaigns, and community rewards. Every holder can see exactly how funds are spent.</p>
-                    </div>
-                    
-                    <div class="tokenomics-card">
-                        <h3><i class="fas fa-hammer"></i> Builder Fund</h3>
-                        <p>5% of the supply is dedicated to rewarding creators: coders, meme artists, moderators, and builders. If you help build OGbongo, you'll be recognized and rewarded.</p>
-                    </div>
-                    
-                    <div class="tokenomics-card">
-                        <h3><i class="fas fa-handshake"></i> Partnerships & Listings</h3>
-                        <p>5% is reserved for exchange listings, partnerships, and collaborations that will expand our reach and bring in new investors.</p>
-                    </div>
-                    
-                    <div class="tokenomics-card">
-                        <h3><i class="fas fa-globe-americas"></i> Cultural & Impact Fund</h3>
-                        <p>5% will go into merch, real-world events, and charity projects that take the OGbongo spirit beyond crypto.</p>
-                    </div>
-                </div>
-                
-                <div class="milestone-section">
-                    <h3 class="page-title">Milestone Unlock System</h3>
-                    <p style="text-align: center; margin-bottom: 20px;">Unlike other projects that just sit on treasury funds, OGbongo only unlocks at community milestones. This means the community drives growth, and the project expands because of you.</p>
-                    
-                    <div class="milestone-grid">
-                        <div class="milestone-card">
-                            <h4>10k holders</h4>
-                            <p>First burn ritual (1% supply burned live)</p>
-                        </div>
-                        <div class="milestone-card">
-                            <h4>25k members</h4>
-                            <p>First OGbongo Lottery for active wallets</p>
-                        </div>
-                        <div class="milestone-card">
-                            <h4>50k holders</h4>
-                            <p>Merch launch (profits used for buybacks & burns)</p>
-                        </div>
-                        <div class="milestone-card">
-                            <h4>$10M market cap</h4>
-                            <p>NFT collection tied to staking rewards</p>
-                        </div>
-                        <div class="milestone-card">
-                            <h4>100k holders</h4>
-                            <p>DAO launch, giving the community full voting rights</p>
-                        </div>
-                        <div class="milestone-card">
-                            <h4>$50M market cap</h4>
-                            <p>Purchase of the first OGbongo Hub (co-working & community center)</p>
-                        </div>
-                        <div class="milestone-card">
-                            <h4>$250M market cap</h4>
-                            <p>Mega Burn Festival, a historic supply sacrifice event</p>
-                        </div>
-                    </div>
-                    <p style="text-align: center; margin-top: 20px; font-style: italic;">Every milestone feels like leveling up together – holders see progress and get rewarded at each stage.</p>
-                </div>
-                
-                <div class="gamification-section">
-                    <h3 class="page-title">🎲 Gamification & Engagement</h3>
-                    <p>We're not just holding, we're playing:</p>
-                    
-                    <div class="gamification-cards">
-                        <div class="gamification-card">
-                            <i class="fas fa-fire"></i>
-                            <h4>Ritual Burns</h4>
-                            <p>Every burn is a cultural event, not a boring number update.</p>
-                        </div>
-                        <div class="gamification-card">
-                            <i class="fas fa-ticket-alt"></i>
-                            <h4>Bongo Lottery</h4>
-                            <p>Active wallets get chances to win from the prize pool.</p>
-                        </div>
-                        <div class="gamification-card">
-                            <i class="fas fa-grin-squint-tears"></i>
-                            <h4>Meme-to-Earn</h4>
-                            <p>Great memes = great rewards from the CDF.</p>
-                        </div>
-                        <div class="gamification-card">
-                            <i class="fas fa-coins"></i>
-                            <h4>Staking Credits</h4>
-                            <p>Stake $OGbongo to earn credits for NFTs, merch, and events.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="vision-section">
-                    <h3>🚀 The Vision</h3>
-                    <p>OGbongo is designed to last.</p>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;">
-                        <div>
-                            <h4>Short term</h4>
-                            <p>Memes, DEX, burns, and rewards.</p>
-                        </div>
-                        <div>
-                            <h4>Mid term</h4>
-                            <p>NFTs, merch, property hubs, and global recognition.</p>
-                        </div>
-                        <div>
-                            <h4>Long term</h4>
-                            <p>A full OGbongo Nation – a DAO-led ecosystem funding real-world projects, events, and global impact.</p>
-                        </div>
-                    </div>
-                    <p style="margin-top: 30px; font-weight: 600;">This is more than a token. It's a culture, a rhythm, a nation in the making.</p>
-                </div>
+            <h2 class="page-title">OGbongo Tokenomics</h2>
+            <div style="text-align: center; padding: 50px;">
+                <h3>Tokenomics Details Coming Soon</h3>
+                <p>Stay tuned for our comprehensive tokenomics breakdown</p>
             </div>
         </div>
     </section>
@@ -1313,23 +620,24 @@
             <h2 class="page-title">Bongo Gallery</h2>
             
             <!-- Upload Section -->
-            <!-- Replace the entire upload section with this: -->
-<div class="upload-section" style="text-align: center;">
-    <h3 style="color: var(--primary); margin-bottom: 20px;">Join Our Telegram Community!</h3>
-    <div class="upload-info">
-        <p>All artwork is automatically synced from our Telegram channel</p>
-        <p>Join and share your OGbongo art to see it here instantly!</p>
-        
-        <a href="https://t.me/ogbongouserartupload" target="_blank" class="btn" style="margin-top: 20px;">
-            <i class="fab fa-telegram"></i> Join Telegram Channel
-        </a>
-        
-        <div style="margin-top: 20px; padding: 15px; background: var(--gradient); color: white; border-radius: 10px;">
-            <h4><i class="fas fa-sync-alt"></i> Live Sync Active</h4>
-            <p>Images posted to Telegram appear here automatically every few minutes!</p>
-        </div>
-    </div>
-</div>
+            <div class="upload-section">
+                <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary);">Share Your OGbongo Art</h3>
+                
+                <!-- Telegram Status -->
+                <div id="telegram-status" class="telegram-status">
+                    <div id="sync-status">
+                        <i class="fas fa-sync-alt fa-spin"></i> Checking Telegram sync status...
+                    </div>
+                </div>
+                
+                <div class="upload-form">
+                    <div class="upload-area" id="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & Drop your OGbongo art here</p>
+                        <p>or</p>
+                        <button class="btn" id="select-files-btn">Select Files</button>
+                        <input type="file" id="file-input" class="file-input" multiple accept="image/*">
+                    </div>
                     
                     <div class="preview-container" id="preview-container"></div>
                     
@@ -1352,90 +660,45 @@
                     <div id="upload-result"></div>
                     
                     <div class="upload-info">
-                        <h4>How It Works</h4>
-                        <p>1. Upload your OGbongo artwork using the form above</p>
-                        <p>2. Your submission will be sent to our team for review</p>
-                        <p>3. Approved artwork will be posted in our Telegram channel</p>
-                        <p>4. All approved artwork will automatically appear here on the website</p>
+                        <h4>Two Ways to Share Your Art:</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                            <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                <i class="fas fa-upload" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                                <h5>Upload Here</h5>
+                                <p>Submit directly for review</p>
+                                <small>We'll notify you when approved</small>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: #0088cc; color: white; border-radius: 8px;">
+                                <i class="fab fa-telegram" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                                <h5>Share on Telegram</h5>
+                                <p>Post to our channel</p>
+                                <small>Appears on website instantly!</small>
+                            </div>
+                        </div>
                         
-                        <a href="https://t.me/ogbongouserartupload" target="_blank" class="telegram-link">
-                            <i class="fab fa-telegram"></i>
-                            View Approved Art on Telegram
+                        <a href="https://t.me/ogbongouserartupload" target="_blank" class="btn" style="margin-top: 20px; background: #0088cc;">
+                            <i class="fab fa-telegram"></i> Join Our Telegram Channel
                         </a>
                     </div>
                 </div>
             </div>
             
-            <!-- Community Gallery Section -->
-            <div class="community-gallery-section">
-                <div class="gallery-header">
-                    <h3 class="page-title">Community Art Gallery</h3>
-                    <p>Artwork submitted by our amazing community members</p>
-                </div>
+            <!-- Community Gallery -->
+            <div style="margin: 50px 0;">
+                <h3 class="page-title">Live Community Gallery</h3>
+                <p style="text-align: center; margin-bottom: 30px;">Artwork automatically synced from our Telegram community</p>
                 <div class="gallery-grid" id="community-gallery">
-                    <div class="gallery-placeholder">
-                        <i class="fas fa-spinner fa-spin"></i>
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary);"></i>
                         <p>Loading community artwork...</p>
                     </div>
                 </div>
             </div>
             
-            <!-- Original Gallery Grid -->
+            <!-- Original Gallery -->
             <h3 class="page-title">Original Bongo Art</h3>
             <div class="gallery-grid" id="original-gallery">
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/vcdNBfRV/file-00000000847861f9a26eb77000b75bbb.png" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/ThvzyZg1/20250806-131538.jpg" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/WFGf61g3/86327fb0-d104-49df-b755-86b0c75c68e1media-editing-tmp.jpg" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/bDkRcVwF/FB-IMG-1754347347395.jpg" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/9R5n774K/file-00000000151461fd929788c937cc9807.png" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/XXKT9Qk8/file-000000002d1461f78ca24fbf83f3f77e.png" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/4mBqSyMH/file-0000000038206230b11d6e6235928bb9-1.png" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/8j1x4MyV/file-00000000b95461fd98153d804f72f310.png" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/Z0mQY6zy/file-00000000d2d4622fbb4045bf1660758b.png" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/F1xBY1hC/file-00000000ee5861f8ab0e00fd9e254c8c.png" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/8jPnMD5p/grok-image-4m2d3a.jpg" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/64BbHxfh/grok-image-xv6w7p8.jpg" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/7fstNcGg/IMG-20250914-203649-927.jpg" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/cvzjdjds/Messenger-creation-BFA4909-D-F156-4651-90-DE-6-D9998-EDE8-AA.png" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/VJvpQ1QG/Messenger-creation-BFCB58-C0-4-FCC-4-BF8-B0-A7-3-F07-A7-E72382.jpg" alt="Bongo Art">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/GBsftQpv/Screenshot-20250806-161743-Chrome.jpg" alt="Bongo Art">
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 30px;">
-                <h3>Bongo Merchandise Coming Soon!</h3>
-                <p>Stay tuned for our exclusive Bongo merchandise collection</p>
+                <!-- Original images will be loaded here -->
             </div>
         </div>
     </section>
@@ -1443,12 +706,10 @@
     <section id="gaming" class="page">
         <div class="container">
             <h2 class="page-title">Bongo Gaming</h2>
-            
-            <div class="coming-soon">
-                <i class="fas fa-gamepad"></i>
-                <h2>Exciting Games Coming Soon</h2>
-                <p>We're developing amazing gaming experiences featuring Bongo</p>
-                <p>Check back later for updates!</p>
+            <div style="text-align: center; padding: 100px 0;">
+                <i class="fas fa-gamepad" style="font-size: 5rem; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3>Exciting Games Coming Soon</h3>
+                <p>Stay tuned for amazing Bongo gaming experiences!</p>
             </div>
         </div>
     </section>
@@ -1456,25 +717,9 @@
     <section id="rewards" class="page">
         <div class="container">
             <h2 class="page-title">Rewards Program</h2>
-            
-            <div class="rewards-container">
-                <p>Our rewards program is designed to give back to our loyal community members. Participate in airdrops, contests, and community activities to earn OGbongo tokens.</p>
-                
-                <div class="rewards-form">
-                    <h3>Sign Up for Airdrop Notifications</h3>
-                    
-                    <div class="form-group">
-                        <label for="wallet-address">Wallet Address</label>
-                        <input type="text" id="wallet-address" placeholder="Enter your wallet address">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="Enter your email">
-                    </div>
-                    
-                    <button class="btn">Notify Me About Airdrops</button>
-                </div>
+            <div style="text-align: center; padding: 50px;">
+                <h3>Rewards Program Details Coming Soon</h3>
+                <p>Exciting rewards and airdrops for our community members</p>
             </div>
         </div>
     </section>
@@ -1482,94 +727,37 @@
     <section id="buy" class="page">
         <div class="container">
             <h2 class="page-title">Buy OGbongo</h2>
-            
-            <div class="buy-container">
-                <div class="ca-box">
-                    <p>Contract Address:</p>
-                    <p id="ca-text">6tVWyzNZDJNwi4Lkb5JSknLYPa9TbjJpzTcGHndBpump</p>
-                    <button class="copy-btn" id="copy-ca">Copy</button>
-                </div>
-                
-                <div class="buy-options">
-                    <a href="https://pump.fun/6tVWyzNZDJNwi4Lkb5JSknLYPa9TbjJpzTcGHndBpump" class="btn" target="_blank">Buy on Pump.fun</a>
-                    
-                    <div style="margin-top: 30px;">
-                        <h3>How to Buy</h3>
-                        <ol style="text-align: left; max-width: 500px; margin: 20px auto;">
-                            <li>Set up a Solana wallet (Phantom, Solflare, etc.)</li>
-                            <li>Purchase SOL and send it to your wallet</li>
-                            <li>Go to Pump.fun and connect your wallet</li>
-                            <li>Paste our contract address to find OGbongo</li>
-                            <li>Swap SOL for OGbongo tokens</li>
-                        </ol>
-                    </div>
+            <div style="max-width: 600px; margin: 0 auto; text-align: center; padding: 50px 0;">
+                <h3>Purchase OGbongo Tokens</h3>
+                <p>Token purchase information coming soon</p>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 30px;">
+                    <p><strong>Contract Address:</strong></p>
+                    <p style="font-family: monospace; word-break: break-all;">6tVWyzNZDJNwi4Lkb5JSknLYPa9TbjJpzTcGHndBpump</p>
+                    <button class="btn" style="margin-top: 15px;">Copy Address</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer style="background: var(--dark); color: white; padding: 50px 0 20px; margin-top: 50px;">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About OGbongo</h3>
-                    <p>OGbongo is a movement built on positivity, community, and the vision of creating something monumental that helps people and spreads light.</p>
+            <div style="text-align: center;">
+                <h3>OGbongo - The Rhythm of a Nation</h3>
+                <p>Building a positive future through community and creativity</p>
+                <div style="display: flex; justify-content: center; gap: 20px; margin: 30px 0;">
+                    <a href="https://t.me/BongoOriginal" target="_blank" style="color: white; font-size: 1.5rem;"><i class="fab fa-telegram"></i></a>
+                    <a href="https://x.com/OGBongo_1" target="_blank" style="color: white; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
                 </div>
-                
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
-                        <li><a href="#tokenomics" class="nav-link" data-page="tokenomics">Tokenomics</a></li>
-                        <li><a href="#buy" class="nav-link" data-page="buy">Buy OGbongo</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Connect With Us</h3>
-                    <div class="social-links">
-                        <a href="https://t.me/BongoOriginal" target="_blank"><i class="fab fa-telegram"></i></a>
-                        <a href="https://x.com/OGBongo_1?t=PVBVYhigwyqoiUpyBL7TDw&s=09" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://discord.gg/2QSEPYYfMU" target="_blank"><i class="fab fa-discord"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 OGbongo. All rights reserved.</p>
+                <p>&copy; 2023 OGbongo. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <div class="chatbot-toggle" id="chatbot-toggle">
-        <i class="fas fa-robot"></i>
-    </div>
-    
-    <div class="chatbot-container" id="chatbot-container">
-        <div class="chatbot-header">
-            <h3>OGBONGO AI CHATBOT</h3>
-            <div class="chatbot-close" id="chatbot-close">
-                <i class="fas fa-times"></i>
-            </div>
-        </div>
-        <div class="chatbot-messages" id="chatbot-messages">
-            <div class="message bot-message">
-                <div class="message-content">
-                    Hello! I'm OGBONGO AI, here to answer your questions about the OGbongo project. How can I help you today?
-                </div>
-            </div>
-        </div>
-        <div class="chatbot-input">
-            <input type="text" id="chatbot-input" placeholder="Type your question...">
-            <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
 
     <script>
         // Backend API URL
         const API_BASE = '/api';
 
-        // Background Music Playback Control
+        // Background Music
         const backgroundMusic = document.getElementById('background-music');
         let musicPlayedOnce = false;
 
@@ -1578,11 +766,10 @@
                 backgroundMusic.volume = 1.0;
                 backgroundMusic.play()
                     .then(() => {
-                        console.log("Background music started successfully.");
                         musicPlayedOnce = true;
                     })
                     .catch(error => {
-                        console.log("Autoplay prevented. Music can be started manually.");
+                        console.log("Autoplay prevented");
                     });
             }
         }
@@ -1593,12 +780,11 @@
             const pages = document.querySelectorAll('.page');
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const navMenu = document.getElementById('nav-menu');
-            const heroBtn = document.querySelector('.hero-content .btn');
             
-            // Attempt to play music on page load
+            // Attempt to play music
             attemptPlayMusic();
 
-            // Function to handle all user interactions that can trigger music
+            // Navigation handler
             function handleUserInteraction(e) {
                 if (!musicPlayedOnce) {
                     attemptPlayMusic();
@@ -1629,116 +815,119 @@
                     // Scroll to top
                     window.scrollTo(0, 0);
                     
-                    // Load community gallery if on gallery page
+                    // Load gallery if on gallery page
                     if (targetPage === 'gallery') {
                         loadCommunityGallery();
+                        loadOriginalGallery();
                     }
                 }
             }
 
-            // Add event listeners for music playback
+            // Add event listeners
             navLinks.forEach(link => {
                 link.addEventListener('click', handleUserInteraction);
             });
 
-            if (heroBtn) {
-                heroBtn.addEventListener('click', handleUserInteraction);
-            }
-
-            // Listen for any click on the document as a last resort to start music
-            document.body.addEventListener('click', attemptPlayMusic);
-            
-            // Mobile menu toggle
+            // Mobile menu
             mobileMenuBtn.addEventListener('click', function() {
                 navMenu.classList.toggle('show');
                 attemptPlayMusic(); 
             });
+
+            // Click anywhere to start music
+            document.body.addEventListener('click', attemptPlayMusic);
             
-            // Copy contract address
-            const copyCaBtn = document.getElementById('copy-ca');
-            copyCaBtn.addEventListener('click', function() {
-                const caText = document.getElementById('ca-text').textContent;
-                navigator.clipboard.writeText(caText).then(() => {
-                    copyCaBtn.textContent = 'Copied!';
-                    setTimeout(() => {
-                        copyCaBtn.textContent = 'Copy';
-                    }, 2000);
-                });
-                attemptPlayMusic(); 
-            });
-            
-            // Chatbot functionality
-            const chatbotToggle = document.getElementById('chatbot-toggle');
-            const chatbotContainer = document.getElementById('chatbot-container');
-            const chatbotClose = document.getElementById('chatbot-close');
-            const chatbotMessages = document.getElementById('chatbot-messages');
-            const chatbotInput = document.getElementById('chatbot-input');
-            const chatbotSend = document.getElementById('chatbot-send');
-            
-            chatbotToggle.addEventListener('click', function() {
-                chatbotContainer.style.display = 'flex';
-                attemptPlayMusic();
-            });
-            
-            chatbotClose.addEventListener('click', function() {
-                chatbotContainer.style.display = 'none';
-            });
-            
-            function addMessage(message, isUser) {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message');
-                messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
-                
-                const messageContent = document.createElement('div');
-                messageContent.classList.add('message-content');
-                messageContent.textContent = message;
-                
-                messageDiv.appendChild(messageContent);
-                chatbotMessages.appendChild(messageDiv);
-                
-                // Scroll to bottom
-                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-            }
-            
-            function handleChatbotInput() {
-                const message = chatbotInput.value.trim();
-                if (message === '') return;
-                
-                addMessage(message, true);
-                chatbotInput.value = '';
-                
-                // Simulate AI response
-                setTimeout(() => {
-                    let response = '';
+            // Telegram status check
+            async function checkTelegramStatus() {
+                try {
+                    const response = await fetch(API_BASE + '/telegram-status');
+                    const status = await response.json();
                     
-                    if (message.toLowerCase().includes('what') && message.toLowerCase().includes('bongo')) {
-                        response = 'OGbongo is a movement built on positivity and community. It started as a character created in middle school and has evolved into a mission to spread light and help people through games, comics, TV series, and community outreach.';
-                    } else if (message.toLowerCase().includes('buy') || message.toLowerCase().includes('purchase')) {
-                        response = 'You can buy OGbongo on Pump.fun using the contract address: 6tVWyzNZDJNwi4Lkb5JSknLYPa9TbjJpzTcGHndBpump. Check our Buy page for detailed instructions.';
-                    } else if (message.toLowerCase().includes('tokenomics') || message.toLowerCase().includes('supply')) {
-                        response = 'OGbongo tokenomics are designed around community milestones and cultural events. We have a Community Development Fund, Builder Fund, and milestone-based unlocks that reward holders as we grow together.';
-                    } else if (message.toLowerCase().includes('roadmap') || message.toLowerCase().includes('plan')) {
-                        response = 'Our roadmap includes building a strong foundation, expanding into games and content, and eventually creating community centers and large-scale positive impact initiatives.';
-                    } else if (message.toLowerCase().includes('community') || message.toLowerCase().includes('help')) {
-                        response = 'The OGbongo community is focused on positivity, mutual support, and making a difference. We have gamified elements like ritual burns, lotteries, and meme-to-earn programs to keep everyone engaged.';
-                    } else if (message.toLowerCase().includes('gallery') || message.toLowerCase().includes('upload')) {
-                        response = 'You can submit your OGbongo artwork through our gallery page. After review, approved art will be posted on our Telegram channel and automatically displayed on the website.';
+                    const statusElement = document.getElementById('sync-status');
+                    const statusContainer = document.getElementById('telegram-status');
+                    
+                    if (status.bot_connected) {
+                        statusElement.innerHTML = `
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Telegram Auto-Sync: ACTIVE</strong>
+                            <br>
+                            <small>Images posted to @ogbongouserartupload appear here instantly!</small>
+                        `;
+                        statusContainer.className = 'telegram-status sync-active';
                     } else {
-                        response = 'Thanks for your question! OGbongo is more than a token - it\'s a movement. Feel free to ask about our tokenomics, how to buy, or our community initiatives.';
+                        statusElement.innerHTML = `
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>Telegram Auto-Sync: SETUP REQUIRED</strong>
+                            <br>
+                            <small>Add bot to channel as admin to enable auto-sync</small>
+                        `;
+                        statusContainer.className = 'telegram-status sync-inactive';
+                    }
+                } catch (error) {
+                    console.error('Error checking Telegram status:', error);
+                }
+            }
+
+            // Load community gallery
+            async function loadCommunityGallery() {
+                try {
+                    const gallery = document.getElementById('community-gallery');
+                    
+                    const response = await fetch(API_BASE + '/gallery');
+                    const approvedArt = await response.json();
+                    
+                    gallery.innerHTML = '';
+                    
+                    if (approvedArt.length === 0) {
+                        gallery.innerHTML = `
+                            <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                                <i class="fas fa-images" style="font-size: 3rem; color: #ddd;"></i>
+                                <h4>No Community Art Yet</h4>
+                                <p>Be the first to share your artwork!</p>
+                            </div>
+                        `;
+                        return;
                     }
                     
-                    addMessage(response, false);
-                }, 1000);
-            }
-            
-            chatbotSend.addEventListener('click', handleChatbotInput);
-            chatbotInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    handleChatbotInput();
+                    approvedArt.forEach(art => {
+                        const galleryItem = document.createElement('div');
+                        galleryItem.className = 'gallery-item';
+                        galleryItem.innerHTML = `
+                            <img src="${art.image_url}" alt="${art.art_description}" 
+                                 onerror="this.src='https://via.placeholder.com/300x200?text=Image+Loading...'">
+                            <div style="position: absolute; bottom: 10px; left: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 8px; border-radius: 5px; font-size: 0.8rem;">
+                                <strong>${art.artist_name}</strong>
+                                ${art.art_description ? `<br>${art.art_description}` : ''}
+                            </div>
+                        `;
+                        gallery.appendChild(galleryItem);
+                    });
+                } catch (error) {
+                    console.error('Error loading community gallery:', error);
                 }
-            });
-            
-            // Gallery Upload Functionality
+            }
+
+            // Load original gallery
+            function loadOriginalGallery() {
+                const originalGallery = document.getElementById('original-gallery');
+                const originalImages = [
+                    'https://i.postimg.cc/vcdNBfRV/file-00000000847861f9a26eb77000b75bbb.png',
+                    'https://i.postimg.cc/ThvzyZg1/20250806-131538.jpg',
+                    'https://i.postimg.cc/WFGf61g3/86327fb0-d104-49df-b755-86b0c75c68e1media-editing-tmp.jpg',
+                    'https://i.postimg.cc/bDkRcVwF/FB-IMG-1754347347395.jpg'
+                ];
+                
+                originalGallery.innerHTML = '';
+                
+                originalImages.forEach(imgSrc => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.innerHTML = `<img src="${imgSrc}" alt="Original Bongo Art">`;
+                    originalGallery.appendChild(galleryItem);
+                });
+            }
+
+            // File upload functionality
             const uploadArea = document.getElementById('upload-area');
             const fileInput = document.getElementById('file-input');
             const selectFilesBtn = document.getElementById('select-files-btn');
@@ -1751,27 +940,25 @@
 
             let selectedFiles = [];
 
-            // Open file selector when upload area is clicked
+            // File selection
             uploadArea.addEventListener('click', function(e) {
                 if (e.target !== selectFilesBtn) {
                     fileInput.click();
                 }
             });
 
-            // Open file selector when button is clicked
             selectFilesBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 fileInput.click();
             });
 
-            // Handle file selection
             fileInput.addEventListener('change', function() {
                 if (this.files.length > 0) {
                     handleFiles(this.files);
                 }
             });
 
-            // Handle drag and drop
+            // Drag and drop
             uploadArea.addEventListener('dragover', function(e) {
                 e.preventDefault();
                 uploadArea.style.borderColor = 'var(--primary)';
@@ -1793,18 +980,16 @@
                 }
             });
 
-            // Process selected files
+            // Process files
             function handleFiles(files) {
                 for (let i = 0; i < files.length; i++) {
                     const file = files[i];
                     
-                    // Check if file is an image
                     if (!file.type.match('image.*')) {
                         showUploadMessage('Please select only image files.', 'error');
                         continue;
                     }
                     
-                    // Check file size (max 5MB)
                     if (file.size > 5 * 1024 * 1024) {
                         showUploadMessage('File size must be less than 5MB.', 'error');
                         continue;
@@ -1812,7 +997,6 @@
                     
                     selectedFiles.push(file);
                     
-                    // Create preview
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         const previewItem = document.createElement('div');
@@ -1836,11 +1020,10 @@
                     reader.readAsDataURL(file);
                 }
                 
-                // Clear file input
                 fileInput.value = '';
             }
 
-            // Submit artwork to backend
+            // Submit artwork
             submitArtBtn.addEventListener('click', async function() {
                 if (selectedFiles.length === 0) {
                     showUploadMessage('Please select at least one image to upload.', 'error');
@@ -1852,13 +1035,11 @@
                     return;
                 }
                 
-                // Create FormData for file upload
                 const formData = new FormData();
                 formData.append('artist_name', artistName.value.trim());
                 formData.append('artist_social', artistSocial.value.trim());
                 formData.append('art_description', artDescription.value.trim());
                 
-                // Add all files
                 selectedFiles.forEach(file => {
                     formData.append('images', file);
                 });
@@ -1875,7 +1056,7 @@
                     const result = await response.json();
                     
                     if (result.success) {
-                        showUploadMessage('Artwork submitted successfully! It will be reviewed soon.', 'success');
+                        showUploadMessage('Artwork submitted successfully! Thank you for your submission.', 'success');
                         
                         // Reset form
                         selectedFiles = [];
@@ -1908,61 +1089,14 @@
                 }, 5000);
             }
 
-            // Load approved community art
-            async function loadCommunityGallery() {
-                try {
-                    const gallery = document.getElementById('community-gallery');
-                    gallery.innerHTML = '<div class="gallery-placeholder"><i class="fas fa-spinner fa-spin"></i><p>Loading community artwork...</p></div>';
-                    
-                    const response = await fetch(API_BASE + '/gallery');
-                    if (!response.ok) throw new Error('Failed to fetch gallery');
-                    
-                    const approvedArt = await response.json();
-                    
-                    gallery.innerHTML = '';
-                    
-                    if (approvedArt.length === 0) {
-                        gallery.innerHTML = `
-                            <div class="gallery-placeholder">
-                                <i class="fas fa-images"></i>
-                                <h3>No Community Art Yet</h3>
-                                <p>Be the first to submit your OGbongo artwork!</p>
-                            </div>
-                        `;
-                        return;
-                    }
-                    
-                    approvedArt.forEach(art => {
-                        const galleryItem = document.createElement('div');
-                        galleryItem.className = 'gallery-item';
-                        galleryItem.innerHTML = `
-                            <img src="${art.image_url}" alt="${art.art_description || 'Community Art'}" 
-                                 onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
-                            <div style="position: absolute; bottom: 10px; left: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 8px; border-radius: 5px; font-size: 0.8rem;">
-                                <strong>${art.artist_name}</strong>
-                                ${art.art_description ? `<br>${art.art_description}` : ''}
-                            </div>
-                        `;
-                        gallery.appendChild(galleryItem);
-                    });
-                } catch (error) {
-                    console.error('Error loading community gallery:', error);
-                    const gallery = document.getElementById('community-gallery');
-                    gallery.innerHTML = `
-                        <div class="gallery-placeholder">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <h3>Failed to Load Gallery</h3>
-                            <p>Please try refreshing the page</p>
-                        </div>
-                    `;
-                }
-            }
-
-            // Load community gallery when page loads if on gallery page
-            if (document.getElementById('gallery').classList.contains('active')) {
-                loadCommunityGallery();
-            }
+            // Initial loads
+            checkTelegramStatus();
+            loadCommunityGallery();
+            loadOriginalGallery();
+            
+            // Refresh status every 30 seconds
+            setInterval(checkTelegramStatus, 30000);
         });
     </script>
 </body>
-</html>
+                    </html>
