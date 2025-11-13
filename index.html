@@ -1313,16 +1313,23 @@
             <h2 class="page-title">Bongo Gallery</h2>
             
             <!-- Upload Section -->
-            <div class="upload-section">
-                <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary);">Submit Your OGbongo Art</h3>
-                <div class="upload-form">
-                    <div class="upload-area" id="upload-area">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <p>Drag & Drop your OGbongo art here</p>
-                        <p>or</p>
-                        <button class="btn" id="select-files-btn">Select Files</button>
-                        <input type="file" id="file-input" class="file-input" multiple accept="image/*">
-                    </div>
+            <!-- Replace the entire upload section with this: -->
+<div class="upload-section" style="text-align: center;">
+    <h3 style="color: var(--primary); margin-bottom: 20px;">Join Our Telegram Community!</h3>
+    <div class="upload-info">
+        <p>All artwork is automatically synced from our Telegram channel</p>
+        <p>Join and share your OGbongo art to see it here instantly!</p>
+        
+        <a href="https://t.me/ogbongouserartupload" target="_blank" class="btn" style="margin-top: 20px;">
+            <i class="fab fa-telegram"></i> Join Telegram Channel
+        </a>
+        
+        <div style="margin-top: 20px; padding: 15px; background: var(--gradient); color: white; border-radius: 10px;">
+            <h4><i class="fas fa-sync-alt"></i> Live Sync Active</h4>
+            <p>Images posted to Telegram appear here automatically every few minutes!</p>
+        </div>
+    </div>
+</div>
                     
                     <div class="preview-container" id="preview-container"></div>
                     
